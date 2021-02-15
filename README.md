@@ -1,3 +1,3 @@
-## Uleth: A CLI for finding forgotten Ethereum wallet passwords
+## Uleth: CLI tool for retrieving forgotten Ethereum wallet passwords
 
 `pip3 install uleth`
