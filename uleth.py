@@ -18,8 +18,12 @@ BATCH_SIZE = 15
 @app.command()
 def new(name: str, filepath: str):
     """
-    Creates a new uleth instance for a locked keystore.
+    Creates a new uleth keystore instance for a locked keystore.
     This will delete an existing entry with the same name.
+
+    Required args:
+        name (str): The name of your new uleth keystore instance.
+        filepath (str): The path to your keystore (UTC) file.
     """
     connection = Connection(name, new=True)
     connection.create(filepath)
@@ -29,7 +33,11 @@ def new(name: str, filepath: str):
 def entry(name: str, typos: bool = False):
     """
     Begins a manual password loading session for the named keystore.
-    Automatically loads all 1-swap, 1-omission, and 1-addition passwords as well.
+    If the --typos flag is included, also loads 1-swaps, 1-omissions,
+    and 1-additions of manually entered passwords.
+
+    Required args:
+        name (str): The name of the operand uleth keystore instance.
     """
     connection = Connection(name)
 
@@ -51,7 +59,11 @@ def entry(name: str, typos: bool = False):
 def load(name: str, filepath: str, typos: bool = False):
     """
     Load a newline-separated password file for the named keystore.
-    Automatically loads all 1-swap, 1-omission, and 1-addition passwords as well.
+    If the --typos flag is included, also loads 1-swaps, 1-omissions,
+    and 1-additions of manually entered passwords.
+
+    Required args:
+        name (str): The name of the operand uleth keystore instance.
     """
     connection = Connection(name)
 
@@ -71,6 +83,9 @@ def load(name: str, filepath: str, typos: bool = False):
 def clean(name: str):
     """
     Removes all untried passwords from the named keystore.
+
+    Required args:
+        name (str): The name of the operand uleth keystore instance.
     """
     connection = Connection(name)
     amount = connection.remove_untried()
@@ -82,6 +97,9 @@ def ls(name: str, all: bool = False):
     """
     Lists all passwords that have been attempted for the named keystore.
     If the --all flag is used, also lists passwords that are loaded but not yet attempted.
+
+    Required args:
+        name (str): The name of the operand uleth keystore instance.
     """
     connection = Connection(name)
     rows = connection.get()
@@ -96,6 +114,9 @@ def stats(name: str):
     """
     Provides statistics such as single-password check time, 
     loaded passwords, attempted passwords for a keystore.
+
+    Required args:
+        name (str): The name of the operand uleth keystore instance.
     """
     connection = Connection(name)
     keystore = Keystore(connection.get_keystore())
@@ -123,6 +144,9 @@ def stats(name: str):
 def run(name: str):
     """
     Begin attempting to unlock the keystore using loaded passwords.
+
+    Required args:
+        name (str): The name of the operand uleth keystore instance.
     """
     connection = Connection(name)
     keystore = Keystore(connection.get_keystore())
