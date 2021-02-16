@@ -10,8 +10,6 @@ import math
 from multikdf.scrypt import scrypt_kdf
 import sha3
 
-BATCH_SIZE = 15
-
 
 class Keystore:
     dklen = 32
@@ -22,13 +20,12 @@ class Keystore:
     def __init__(self, keystore_json: str):
         try:
             keystore = json.loads(keystore_json)
+            self.salt = bytearray.fromhex(keystore["Crypto"]["kdfparams"]["salt"])
+            self.ciphertext = bytearray.fromhex(keystore["Crypto"]["ciphertext"])
+            self.mac = bytearray.fromhex(keystore["Crypto"]["mac"])
         except:
             print("Invalid keystore JSON.")
             exit()
-
-        self.salt = bytearray.fromhex(keystore["Crypto"]["kdfparams"]["salt"])
-        self.ciphertext = bytearray.fromhex(keystore["Crypto"]["ciphertext"])
-        self.mac = bytearray.fromhex(keystore["Crypto"]["mac"])
 
     def check_multi(self, passwords: List[str]):
         dklen, r, p, n = Keystore.dklen, Keystore.r, Keystore.p, Keystore.n
