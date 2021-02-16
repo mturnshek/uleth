@@ -8,7 +8,7 @@
 
 #### new
 
-Creates a new uleth keystore instance for a locked keystore. This will delete an existing entry with the same name
+Creates a new uleth keystore instance for a given keystore. This will delete an existing entry with the same name
 
 `python3 uleth.py new asdf ../path/to/keystore`
 
