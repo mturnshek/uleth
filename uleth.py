@@ -18,7 +18,7 @@ BATCH_SIZE = 15
 @app.command()
 def new(name: str, filepath: str):
     """
-    Creates a new uleth keystore instance for a locked keystore.
+    Creates a new uleth keystore instance for a given keystore.
     This will delete an existing entry with the same name.
 
     Required args:
