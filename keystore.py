@@ -10,6 +10,8 @@ import math
 from multikdf.scrypt import scrypt_kdf
 import sha3
 
+BATCH_SIZE = 15
+
 
 class Keystore:
     dklen = 32
@@ -27,19 +29,6 @@ class Keystore:
         self.salt = bytearray.fromhex(keystore["Crypto"]["kdfparams"]["salt"])
         self.ciphertext = bytearray.fromhex(keystore["Crypto"]["ciphertext"])
         self.mac = bytearray.fromhex(keystore["Crypto"]["mac"])
-
-    def check(self, password: str):
-        dklen, r, p, n = Keystore.dklen, Keystore.r, Keystore.p, Keystore.n
-        salt, ciphertext, mac = self.salt, self.ciphertext, self.mac
-
-        derived_key = scrypt_kdf(password, salt, r, p, n, dklen)[16:32]
-        concat = derived_key + ciphertext
-
-        k = sha3.keccak_256()
-        k.update(concat)
-        hashconcat = bytearray.fromhex(k.hexdigest())
-
-        return hashconcat == mac
 
     def check_multi(self, passwords: List[str]):
         dklen, r, p, n = Keystore.dklen, Keystore.r, Keystore.p, Keystore.n

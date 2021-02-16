@@ -1,5 +1,11 @@
 ## Uleth: CLI tool for retrieving forgotten Ethereum wallet passwords
 
+### System Dependencies
+
+`sudo apt install libssl-dev`
+
+### Commands
+
 #### new
 
 Creates a new uleth keystore instance for a locked keystore. This will delete an existing entry with the same name
