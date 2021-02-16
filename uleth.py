@@ -163,10 +163,12 @@ def run(name: str):
             current_passwords = []
 
             tried = 0
-            while len(rows) != 0:
+            while len(indices) != 0:
                 start_time = time.time()
 
-                for _ in range(BATCH_SIZE):
+                current_batch_size = min(BATCH_SIZE, len(indices))
+
+                for _ in range(current_batch_size):
                     current_indices.append(indices.pop())
                     current_passwords.append(passwords.pop())
 
@@ -180,13 +182,13 @@ def run(name: str):
                     else:
                         print(f"tried {current_passwords[i]}")
 
-                tried += BATCH_SIZE
+                tried += current_batch_size
                 current_passwords = []
                 current_indices = []
 
                 end_time = time.time()
 
-                profile = (end_time - start_time) / BATCH_SIZE
+                profile = (end_time - start_time) / current_batch_size
                 remaining = len(rows) - tried
                 hours = (profile * remaining) / (60.0 * 60.0)
                 print(f"{remaining} passwords remaining.")
