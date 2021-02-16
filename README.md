@@ -1,12 +1,10 @@
 ## Uleth: CLI tool for retrieving forgotten Ethereum wallet passwords
 
-#### Basic commands
+#### New
 
-Creates a new uleth keystore instance for a locked keystore. This will delete an existing entry with the same name. Example:
+Creates a new uleth keystore instance for a locked keystore. This will delete an existing entry with the same name
 
-```
-python3 uleth.py new asdf ../path/to/keystore
-```
+-   `python3 uleth.py new asdf ../path/to/keystore`
 
 Begins a manual password loading session for the named keystore. Example:
 
