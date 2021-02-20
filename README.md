@@ -36,7 +36,7 @@ python3 uleth.py entry [keystore name]
 ```
 Enter a set of possible passwords. Runtime increases drastically with additional entries, and so it is important to consider them carefully. See the future [how to think about lost passwords]() guide for further analysis.
 
-To add automatically generated typos, omissions, and repitions to your entries, pass the `--typos` flag:
+To add automatically generated swaps, omissions, and repitions to your entries, pass the `--typos` flag:
 ```
 python3 uleth.py entry [keystore name] --typos
 ```
