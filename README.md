@@ -30,13 +30,13 @@ After the application is installed, first create a new uleth keystore based on a
 python3 uleth.py new [keystore name] [path to private key file]
 ```
 
-Next, run the interactive password database generator to store a set of base passwords that permutations will be based on.
+Next, run the interactive password database generator to store a set of base passwords that unlocker will use.
 ```
 python3 uleth.py entry [keystore name]
 ```
 Enter a set of possible passwords. Runtime increases drastically with additional entries, and so it is important to consider them carefully. See the future [how to think about lost passwords]() guide for further analysis.
 
-To add automatically generated typos, omissions, and repitions to your entries, pas the `--typos` flag:
+To add automatically generated typos, omissions, and repitions to your entries, pass the `--typos` flag:
 ```
 python3 uleth.py entry [keystore name] --typos
 ```
