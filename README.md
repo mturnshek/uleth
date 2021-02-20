@@ -36,12 +36,18 @@ python3 uleth.py entry [keystore name]
 ```
 Enter a set of possible passwords. Runtime increases drastically with additional entries, and so it is important to consider them carefully. See the future [how to think about lost passwords]() guide for further analysis.
 
+To add automatically generated typos, omissions, and repitions to your entries, pas the `--typos` flag:
+```
+python3 uleth.py entry [keystore name] --typos
+```
 It is also possible to use the `load` command to load a list of passwords from a file.
 
 At any point after some passwords have been entered, try running the unlocking process. This will take some length of time depending on the number and length of entries, but your progress will be saved should you decide to stop or add more entries later.
 ```
 python3 uleth.py run [keystore name]
 ```
+
+You can continue adding entries with the `entry` process as the unlocking process is running, and they will be added to the list of things to try.
 
 If your password has been found, congratulations! Consider [tipping](). If not, continue adding entries incrementally and running the unlocking process.
 
